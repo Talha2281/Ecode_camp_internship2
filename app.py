@@ -1,17 +1,13 @@
 import streamlit as st
-import pickle
+import joblib
 import numpy as np
 
-# Load the trained Gradient Boosting model
-model_path = 'diabates 2.pkl'  # Update the model path if needed
-with open(model_path, 'rb') as file:
-    model = pickle.load(file)
+# Load the KNN model
+model_path = 'diabetes.pkl'  # Ensure this matches the exact filename in your GitHub repository
+model = joblib.load(model_path)
 
-# Debugging line to check the model type
-st.write("Model type:", type(model))
-
-# Title of the web app
-st.title('Diabates Prediction App')
+# Title and creator information
+st.title('Diabetes Prediction App')
 st.write("This app is created by TALHA KHAN")  # Replace [Your Name] with your actual name
 
 # Input fields for user data
@@ -24,11 +20,9 @@ bmi = st.number_input('BMI', min_value=0.0, max_value=70.0, step=0.1)
 dpf = st.number_input('Diabetes Pedigree Function', min_value=0.0, max_value=2.5, step=0.01)
 age = st.number_input('Age', min_value=10, max_value=100, step=1)
 
-# Prediction function
+# Prediction button and display
 if st.button('Predict'):
     input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]])
-    st.write("Input data shape:", input_data.shape)  # Check the shape of the input data
-    st.write("Input data:", input_data)  # Check the input data
     prediction = model.predict(input_data)
     
     if prediction == 1:
