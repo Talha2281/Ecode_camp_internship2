@@ -9,6 +9,7 @@ with open(model_path, 'rb') as file:
 
 # Title of the web app
 st.title('Diabates Prediction App')
+st.write("This app is created by[TALHA KHAN]")
 
 # Input fields for user data
 pregnancies = st.number_input('Number of Pregnancies', min_value=0, max_value=20, step=1)
