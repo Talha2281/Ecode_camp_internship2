@@ -2,13 +2,13 @@ import streamlit as st
 import pickle
 import numpy as np
 
-# Load the trained Gradient Boosting model
+# Load the trained trained model
 model_path = 'diabates 2.pkl'  # Name of your model file
 with open(model_path, 'rb') as file:
     model = pickle.load(file)
 
 # Title of the web app
-st.title('Diabetes Prediction App')
+st.title('Diabates Prediction App')
 
 # Input fields for user data
 pregnancies = st.number_input('Number of Pregnancies', min_value=0, max_value=20, step=1)
