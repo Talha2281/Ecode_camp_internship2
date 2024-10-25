@@ -1,10 +1,9 @@
-%%writefile app.py
 import streamlit as st
 import pickle
 import numpy as np
 
 # Load the trained Gradient Boosting model
-model_path = 'diabetes 2.pkl'  # Use the correct model file name here
+model_path = 'diabetes 2.pkl'  # Name of your model file
 with open(model_path, 'rb') as file:
     model = pickle.load(file)
 
@@ -30,3 +29,4 @@ if st.button('Predict'):
         st.write('The model predicts that you have diabetes.')
     else:
         st.write('The model predicts that you do not have diabetes.')
+
