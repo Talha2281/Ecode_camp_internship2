@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 # Load the trained Gradient Boosting model
-model_path = 'diabetes 2.pkl'  # Name of your model file
+model_path = 'diabates 2.pkl'  # Name of your model file
 with open(model_path, 'rb') as file:
     model = pickle.load(file)
 
