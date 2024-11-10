@@ -1,10 +1,9 @@
 import streamlit as st
 import joblib
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 
 # Load the KNN model
-model_path = 'diabates 2.pkl'  # Make sure this path is correct
+model_path = 'diabates 2.pkl'  # Ensure this is the correct path for your trained model
 model = joblib.load(model_path)
 
 # Title and creator information
@@ -31,13 +30,7 @@ else:
 if st.button('Predict'):
     input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]])
 
-    # Standardize input data using predefined mean and std values
-    scaler = StandardScaler()
-    scaler.mean_ = np.array([3.8, 120.9, 69.1, 20.5, 80.5, 32.0, 0.5, 33.2])  # Replace with actual mean values
-    scaler.scale_ = np.array([3.2, 32.0, 19.4, 15.9, 115.2, 7.9, 0.3, 11.8])   # Replace with actual std values
-    input_data = scaler.transform(input_data)
-
-    # Make prediction
+    # Make prediction without scaling (temporarily removed standardization)
     try:
         prediction = model.predict(input_data)
 
@@ -51,6 +44,8 @@ if st.button('Predict'):
         st.write("An error occurred:", str(e))
 
 
+
+     
  
 
 
