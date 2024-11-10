@@ -8,7 +8,7 @@ model_path = 'diabates 2.pkl'  # Ensure this is the correct path for your traine
 model = joblib.load(model_path)
 
 # GIMNI API integration
-GIMNI_API_KEY = 'AIzaSyBZ-MtjPu2rtQhUyruMphzuwL87_lKuDRk'  # Your GIMNI API Key
+GIMNI_API_KEY = 'AIzaSyDUfqGenqIvqLEOCSmrz1Z2AJuag4NX_Cs'  # Your GIMNI API Key
 GIMNI_API_URL = 'https://api.gimni.com/advice'  # Replace with actual GIMNI API URL
 
 # Title and creator information
@@ -26,7 +26,7 @@ dpf = st.number_input('Diabetes Pedigree Function', min_value=0.0, max_value=2.5
 age = st.number_input('Age', min_value=10, max_value=100, step=1)
 
 # Sidebar for GIMNI Query
-st.sidebar.header("Ask GIMNI for Advice")
+st.sidebar.header("Ask for Advice")
 user_query = st.sidebar.text_input("Enter your query:")
 
 # Function to get advice from GIMNI API
