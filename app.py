@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # Load the KNN model
-model_path = 'diabetes.pkl'
+model_path = 'diabates 2.pkl'
 model = joblib.load(model_path)
 
 # Title and creator information
