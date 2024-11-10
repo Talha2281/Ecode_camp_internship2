@@ -4,4 +4,6 @@ pandas
 scikit-learn
 matplotlib   
 seaborn
+requests
+groq
 
