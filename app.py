@@ -7,10 +7,6 @@ from sklearn.preprocessing import StandardScaler
 model_path = 'diabates 2.pkl'  # Ensure you’re using the correct model file
 model = joblib.load(model_path)
 
-# Define the means and standard deviations for each feature
-mean_values = [3.8, 120.9, 69.1, 20.5, 80.5, 32.0, 0.5, 33.2]  # Example means
-std_values = [3.2, 32.0, 19.4, 15.9, 115.2, 7.9, 0.3, 11.8]     # Example std deviations
-
 # Title and creator information
 st.title('Diabetes Prediction App')
 st.write("This app is created by TALHA KHAN")
@@ -25,14 +21,18 @@ bmi = st.number_input('BMI', min_value=0.0, max_value=70.0, step=0.1)
 dpf = st.number_input('Diabetes Pedigree Function', min_value=0.0, max_value=2.5, step=0.01)
 age = st.number_input('Age', min_value=10, max_value=100, step=1)
 
+# Ensure input fields are working before proceeding
+if pregnancies is not None and glucose is not None:
+    st.write("Input fields are active and receiving values.")
+
 # Prediction button
 if st.button('Predict'):
     input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]])
 
-    # Standardize input data
+    # Standardize input data using predefined mean and std values
     scaler = StandardScaler()
-    scaler.mean_ = np.array(mean_values)
-    scaler.scale_ = np.array(std_values)
+    scaler.mean_ = np.array([3.8, 120.9, 69.1, 20.5, 80.5, 32.0, 0.5, 33.2])  # Replace with actual mean values
+    scaler.scale_ = np.array([3.2, 32.0, 19.4, 15.9, 115.2, 7.9, 0.3, 11.8])   # Replace with actual std values
     input_data = scaler.transform(input_data)
 
     # Make prediction
@@ -47,6 +47,8 @@ if st.button('Predict'):
 
     except Exception as e:
         st.write("An error occurred:", str(e))
+
+
 
 
 
