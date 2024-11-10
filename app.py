@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 # Load the KNN model
-model_path = 'diabates 2.pkl'  # Ensure you’re using the correct model file
+model_path = 'diabates 2.pkl'  # Make sure this path is correct
 model = joblib.load(model_path)
 
 # Title and creator information
@@ -21,9 +21,11 @@ bmi = st.number_input('BMI', min_value=0.0, max_value=70.0, step=0.1)
 dpf = st.number_input('Diabetes Pedigree Function', min_value=0.0, max_value=2.5, step=0.01)
 age = st.number_input('Age', min_value=10, max_value=100, step=1)
 
-# Ensure input fields are working before proceeding
-if pregnancies is not None and glucose is not None:
-    st.write("Input fields are active and receiving values.")
+# Debugging: Checking if the input fields are working
+if pregnancies and glucose and blood_pressure and skin_thickness and insulin and bmi and dpf and age:
+    st.write("Input fields are working!")
+else:
+    st.write("Some fields may not be properly initialized.")
 
 # Prediction button
 if st.button('Predict'):
@@ -49,6 +51,7 @@ if st.button('Predict'):
         st.write("An error occurred:", str(e))
 
 
+ 
 
 
 
