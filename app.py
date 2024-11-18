@@ -45,6 +45,7 @@ def get_llama_advice(query):
 # Streamlit interface
 st.title("Diabetes Prediction App with Expert Advice")
 st.sidebar.title("Expert Advice")
+st.write("This application is created by TALHA KHAN")
 
 # Input fields for diabetes prediction
 inputs = {
