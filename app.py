@@ -2,23 +2,39 @@ import streamlit as st
 import joblib
 import numpy as np
 import os
-import requests
+from groq import Groq
 
 # Load your diabetes prediction model
-model_path = 'diabetes 2.pkl'
+model_path = 'diabetes 2.pkl'  # Update if necessary
 try:
     model = joblib.load(model_path)
 except FileNotFoundError:
     st.error("Model file not found. Ensure 'diabetes 2.pkl' is in the project directory.")
+    st.stop()
 
-# Function to simulate advice fetching (replace with actual API call)
+# Initialize Groq API client
+try:
+    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+except Exception as e:
+    st.error(f"Failed to initialize Groq API client: {e}")
+    st.stop()
+
+# Function to get advice using the Llama model via Groq API
 def get_llama_advice(query):
     try:
-        # Simulated response for demo
-        advice = f"Advice for your query '{query}': Stay hydrated and exercise regularly."
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": query,
+                }
+            ],
+            model="llama3-8b-8192",
+        )
+        advice = chat_completion.choices[0].message.content
         return advice
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"Error in fetching advice: {str(e)}"
 
 # Streamlit interface
 st.title("Diabetes Prediction App with Expert Advice")
@@ -49,9 +65,9 @@ if st.button("Predict Diabetes"):
 st.sidebar.subheader("Ask for Advice")
 user_query = st.sidebar.text_input("Enter your question (e.g., advice on diet)")
 if user_query:
+    st.sidebar.write("Fetching advice, please wait...")
     advice = get_llama_advice(user_query)
     st.sidebar.write("Advice:", advice)
-
 
 
 
