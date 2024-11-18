@@ -5,7 +5,7 @@ import os
 from groq import Groq
 
 # Load your diabetes prediction model
-model_path = 'diabetes 2.pkl'  # Update if necessary
+model_path = 'diabates 2.pkl'  # Update if necessary
 try:
     model = joblib.load(model_path)
 except FileNotFoundError:
